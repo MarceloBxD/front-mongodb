@@ -3,8 +3,8 @@
 import {
   criar_rotas,
   orderByYearThenByMonthThenByDayThenHour,
-} from "@/utils/functions"
-import { Assento, Rota } from "@/types"
+} from "../utils/functions"
+import { Assento, Rota } from "../types"
 import { createContext, useContext, useState, useEffect } from "react"
 
 type User = {

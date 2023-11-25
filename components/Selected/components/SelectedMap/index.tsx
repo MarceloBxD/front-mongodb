@@ -1,7 +1,6 @@
-import { useApp } from "@/contexts/contextApi"
 import React, { useEffect } from "react"
-import { googleLoader } from "@/utils/google"
-import { Rota } from "@/types"
+import { googleLoader } from "../../../../utils/google"
+import { Rota } from "../../../../types"
 
 type SelectedMapProps = {
   route: Rota | null

@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import "./header.css";
 import Link from "next/link";
-import { useApp } from "@/contexts/contextApi";
-import { HelpBox } from "@/components/HelpBox";
+import { useApp } from "../../contexts/contextApi";
+import { HelpBox } from "../../components/HelpBox";
 import { usePathname, useRouter } from "next/navigation";
 
 const Header: React.FC = () => {

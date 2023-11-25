@@ -1,5 +1,5 @@
-import { cidades } from "@/data/cidades"
-import { Rota } from "@/types"
+import { cidades } from "../data/cidades"
+import { Rota } from "../types"
 import { faker } from "@faker-js/faker"
 
 export const random_date = (start: Date, end: Date) => {

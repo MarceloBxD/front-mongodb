@@ -1,7 +1,6 @@
 import React from "react";
-import "./footer.css";
 
-const footer: React.FC = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="footer-section">
       <div className="footer-topo">
@@ -181,4 +180,4 @@ const footer: React.FC = () => {
   );
 };
 
-export default footer;
+export default Footer;

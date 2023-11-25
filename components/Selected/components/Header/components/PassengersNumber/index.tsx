@@ -1,5 +1,5 @@
-import PersonIcon from "@/assets/icons/PersonIcon"
-import { useApp } from "@/contexts/contextApi"
+import PersonIcon from "../../../../../../assets/icons/PersonIcon"
+import { useApp } from "../../../../../../contexts/contextApi"
 import React from "react"
 
 const PassengersNumber: React.FC = () => {

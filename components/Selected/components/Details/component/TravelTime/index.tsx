@@ -1,9 +1,9 @@
 import React from "react"
 
-import ArrowRight from "@/assets/icons/ArrowRight"
-import ClockIcon from "@/assets/icons/ClockIcon"
-import { useApp } from "@/contexts/contextApi"
-import { format_hour, travelTime } from "@/utils/functions"
+import ArrowRight from "../../../../../../assets/icons/ArrowRight"
+import ClockIcon from "../../../../../../assets/icons/ClockIcon"
+import { useApp } from "../../../../../../contexts/contextApi"
+import { format_hour, travelTime } from "../../../../../../utils/functions"
 
 const TravelTime: React.FC = () => {
   const { selectedRoute } = useApp()

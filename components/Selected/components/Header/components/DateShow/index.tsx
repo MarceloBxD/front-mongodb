@@ -1,7 +1,7 @@
 "use client"
-import CalendarIcon from "@/assets/icons/CalendarIcon"
-import { useApp } from "@/contexts/contextApi"
-import { format_date, format_hour } from "@/utils/functions"
+import CalendarIcon from "../../../../../../assets/icons/CalendarIcon"
+import { useApp } from "../../../../../../contexts/contextApi"
+import { format_date, format_hour } from "../../../../../../utils/functions"
 import React from "react"
 
 const DateShow: React.FC = () => {

@@ -1,6 +1,6 @@
 "use client"
 import React from "react"
-import { useApp } from "@/contexts/contextApi"
+import { useApp } from "../../contexts/contextApi"
 import { TripItem } from "./components"
 
 const TripList: React.FC = () => {

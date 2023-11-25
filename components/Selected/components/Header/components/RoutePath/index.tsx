@@ -1,9 +1,9 @@
 "use client"
-import { useApp } from "@/contexts/contextApi"
+import { useApp } from "../../../../../../contexts/contextApi"
 import React from "react"
 
-import LocationIcon from "@/assets/icons/LocationIcon"
-import ArrowRight from "@/assets/icons/ArrowRight"
+import LocationIcon from "../../../../../../assets/icons/LocationIcon"
+import ArrowRight from "../../../../../../assets/icons/ArrowRight"
 
 const RoutePath: React.FC = () => {
   const { selectedRoute } = useApp()

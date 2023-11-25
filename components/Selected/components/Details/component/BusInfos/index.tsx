@@ -1,7 +1,7 @@
-import AcIcon from "@/assets/icons/AcIcon"
-import RestroomIcon from "@/assets/icons/RestroomIcon"
-import SeatIcon from "@/assets/icons/SeatIcon"
 import React from "react"
+import AcIcon from "../../../../../../assets/icons/AcIcon"
+import RestroomIcon from "../../../../../../assets/icons/RestroomIcon"
+import SeatIcon from "../../../../../../assets/icons/SeatIcon"
 
 const BusInfos: React.FC = () => {
   return (

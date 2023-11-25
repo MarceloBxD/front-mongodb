@@ -3,7 +3,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { usePathname,useRouter } from "next/navigation";
-import { useApp } from "@/contexts/contextApi";
+import { useApp } from "../../contexts/contextApi";
 
 export default function Admin () {
   const [selectedButton, setSelectedButton] = useState<string>("");

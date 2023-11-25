@@ -1,4 +1,4 @@
-import RoutePath from "@/components/Selected/components/Header/components/RoutePath"
+import RoutePath from "../../../../components/Selected/components/Header/components/RoutePath"
 import React from "react"
 import SeatsSelecteds from "./components/SeatsSelecteds"
 import BusSeats from "./components/BusSeats"

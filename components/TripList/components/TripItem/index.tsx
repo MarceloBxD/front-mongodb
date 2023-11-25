@@ -1,8 +1,8 @@
-import ArrowRight from "@/assets/icons/ArrowRight"
-import Map from "@/components/Map"
-import SelectedMap from "@/components/Selected/components/SelectedMap"
-import { Rota } from "@/types"
-import { format_date, format_hour } from "@/utils/functions"
+import ArrowRight from "../../../../assets/icons/ArrowRight"
+import Map from "../../../../components/Map"
+import SelectedMap from "../../../../components/Selected/components/SelectedMap"
+import { Rota } from "../../../../types"
+import { format_date, format_hour } from "../../../../utils/functions"
 import Link from "next/link"
 import React from "react"
 

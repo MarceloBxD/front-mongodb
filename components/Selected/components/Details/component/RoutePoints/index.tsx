@@ -1,5 +1,5 @@
-import LocationIcon from "@/assets/icons/LocationIcon"
-import { useApp } from "@/contexts/contextApi"
+import LocationIcon from "../../../../../../assets/icons/LocationIcon"
+import { useApp } from "../../../../../../contexts/contextApi"
 import React from "react"
 
 const RoutePoints: React.FC = (props) => {

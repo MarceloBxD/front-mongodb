@@ -1,4 +1,4 @@
-import { useApp } from "@/contexts/contextApi"
+import { useApp } from "../../../../../../contexts/contextApi"
 import React from "react"
 
 const SeatsSelecteds: React.FC = () => {

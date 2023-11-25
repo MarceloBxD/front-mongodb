@@ -1,5 +1,5 @@
-import CloseIcon from "@/assets/icons/CloseIcon"
-import { useApp } from "@/contexts/contextApi"
+import CloseIcon from "../../../../assets/icons/CloseIcon"
+import { useApp } from "../../../../contexts/contextApi"
 import React from "react"
 
 const Header: React.FC = () => {

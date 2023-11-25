@@ -1,7 +1,7 @@
 "use client"
 
-import Selected from "@/components/Selected"
-import { useApp } from "@/contexts/contextApi"
+import Selected from "../../components/Selected"
+import { useApp } from "../../contexts/contextApi"
 import { useRouter, useSearchParams } from "next/navigation"
 import React from "react"
 

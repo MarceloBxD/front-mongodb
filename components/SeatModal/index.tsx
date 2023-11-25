@@ -1,5 +1,5 @@
 "use client"
-import { useApp } from "@/contexts/contextApi"
+import { useApp } from "../../contexts/contextApi"
 import React from "react"
 import Header from "./components/Header"
 import Content from "./components/Content"

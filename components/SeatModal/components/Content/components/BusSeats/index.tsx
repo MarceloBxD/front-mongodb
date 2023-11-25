@@ -1,8 +1,8 @@
-import { useApp } from "@/contexts/contextApi"
 import Image from "next/image"
 import React from "react"
-import busSchema from "@/assets/bus-schema.png"
-import BusSeatIcon from "@/assets/icons/BusSeatIcon"
+import { useApp } from "../../../../../../contexts/contextApi"
+import busSchema from "../../../../../../assets/bus-schema.png"
+import BusSeatIcon from "../../../../../../assets/icons/BusSeatIcon"
 
 const BusSeats: React.FC = () => {
   const { selectedRoute, setSeatsSelected, seatsSelected } = useApp()
