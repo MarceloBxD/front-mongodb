@@ -1,3 +1,9 @@
+export interface UserDocument extends Document {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export type Assento = {
     id: number,
     numero: number,
