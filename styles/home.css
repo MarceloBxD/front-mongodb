@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+input {
+  max-width: 520px;
+  height: fit-content;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: rgba(33, 58, 92, 0.63) !important;
+  border: 1px solid #213a5c;
+  color: #fff;
+  font-family: "Inter", sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+input::placeholder {
+  color: #fff !important;
+}
+
+.botao-limpar {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #000;
+  text-decoration: underline;
+}
+
+.botao-buscar {
+  max-width: 195px;
+  width: 100%;
+  padding: 10px 60px;
+  background-color: #213a5c !important;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+.finalizar-busca-container {
+  display: flex;
+  gap: 10px;
+  text-wrap: nowrap;
+}
+
+.box-select-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: -40px;
+}
+
+/* MOBILE  */
+
+@media screen and (max-width: 768px) {
+  .box-select {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.error-message-home {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+}

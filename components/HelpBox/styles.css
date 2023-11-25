@@ -1,0 +1,14 @@
+.boxContainer {
+  position: absolute;
+  top: 60px;
+  border-radius: 30px;
+  right: 0;
+  width: 250px;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
