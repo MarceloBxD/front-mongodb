@@ -82,12 +82,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     used_routes.sort(orderByYearThenByMonthThenByDayThenHour)
 
-    used_routes = used_routes.filter((rota: Rota) => {
-      const now = new Date()
-      const rota_ida = rota.data_ida.split("/").reverse().join("/")
-      const rota_date = new Date(rota_ida)
-      return rota_date.getTime() > now.getTime()
-    })
+    // used_routes = used_routes.filter((rota: Rota) => {
+    //   const now = new Date()
+    //   const rota_ida = rota.data_ida.split("/").reverse().join("/")
+    //   const rota_date = new Date(rota_ida)
+    //   return rota_date.getTime() > now.getTime()
+    // })
 
     setRotas(used_routes)
   }
