@@ -21,7 +21,12 @@ const Content: React.FC = () => {
       </div>
       <div className="w-full flex-col-reverse flex items-center gap-8">
         <BusSeats />
-        <div>
+        <div className="
+          flex
+          flex-row
+          gap-4
+          w-[50%]
+          justify-between">
           <Legenda />
           <button>
             Salvar dados
