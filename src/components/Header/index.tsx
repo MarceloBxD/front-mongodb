@@ -58,8 +58,8 @@ const Header: React.FC = () => {
             {showHelpBox && <HelpBox />}
           </div>
         ) : (
-          <div className="w-full flex items-center justify-end gap-5">
-            <div style={{ color: "#000" }}>
+          <div className="w-full flex items-center justify-end gap-5 p-4">
+            <div className="color-black hidden md:flex">
               Bem-vindo, <b>{user.name.split(' ')[0]}!</b>
             </div>
             <button

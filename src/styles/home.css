@@ -27,7 +27,6 @@ input::placeholder {
 }
 
 .botao-buscar {
-  max-width: 195px;
   width: 100%;
   padding: 10px 60px;
   background-color: #213a5c !important;

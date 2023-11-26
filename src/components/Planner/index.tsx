@@ -67,9 +67,11 @@ const Planner: React.FC = () => {
   return (
     <div className="box-select-wrapper mx-5">
       <form
-        className="flex w-fit bg-white px-[15px] py-[24px] gap-[12px] justify-center rounded-[12px]"
+        className="flex flex-col w-fit bg-white px-[15px] py-[24px] gap-[12px] justify-center rounded-[12px]"
         onSubmit={handleSubmit(onSubmit)}
       >
+        
+        <div className="flex gap-[12px]">
         <div className="flex flex-col gap-[8px]">
           <Origem
             value={formData}
@@ -93,21 +95,13 @@ const Planner: React.FC = () => {
             register={register}
           />
 
-          <div className="finalizar-busca-container">
-            {/* <Passageiros
-              value={formData}
-              setValue={setFormData}
-              errors={errors}
-              register={register}
-            /> */}
-            <div className="flex flex-col-reverse">
-              <Limpar limparCampos={limparCampos} />
               <button type="submit" className="botao-buscar">
                 BUSCAR
               </button>
-            </div>
           </div>
         </div>
+          
+              <Limpar limparCampos={limparCampos} />
       </form>
     </div>
   )
