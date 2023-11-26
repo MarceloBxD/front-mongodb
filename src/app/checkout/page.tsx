@@ -16,7 +16,7 @@ const Page: React.FC = () => {
   
   }, [])
 
-  if (!seatsSelected)
+  if (!seatsSelected || seatsSelected.length === 0)
     return (
       <div className="w-full h-[400px] flex flex-col items-center justify-center gap-4">
         <span className="text-2xl font-bold">

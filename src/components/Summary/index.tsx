@@ -2,12 +2,14 @@
 import LocationIcon from "@/assets/icons/LocationIcon"
 import PersonIcon from "@/assets/icons/PersonIcon"
 import { useApp } from "@/contexts/contextApi"
+import { checkout } from "@/utils/backend_functions/checkout"
 import { format_hour } from "@/utils/functions"
 import React from "react"
 
 const Summary: React.FC = () => {
   const { passengersInfo, selectedRoute, checkoutStep, setCheckoutStep } =
     useApp()
+  const [loading, setLoading] = React.useState(false)
 
   const checkIfPassengersInfoIsFilled = () => {
     const isFilled = passengersInfo.every((passengerInfo) => {
@@ -18,6 +20,10 @@ const Summary: React.FC = () => {
     })
 
     return isFilled
+  }
+
+  const handleCheckout = async () => {
+    setLoading(true)
   }
 
   if (!selectedRoute) return null
@@ -90,12 +96,17 @@ const Summary: React.FC = () => {
             ? "opacity-50 cursor-not-allowed"
             : "bg-blue-500 hover:bg-blue-600 text-white"
         } rounded-xl p-2 shadow-md`}
-        disabled={!checkIfPassengersInfoIsFilled()}
+        disabled={!checkIfPassengersInfoIsFilled() || loading}
         onClick={() => {
-          setCheckoutStep(checkoutStep + 1)
+          if (checkoutStep === 0) setCheckoutStep(checkoutStep + 1)
+          else {
+            handleCheckout()
+          }
         }}
       >
-        {checkoutStep === 0
+        {loading
+          ? "Carregando..."
+          : checkoutStep === 0
           ? !checkIfPassengersInfoIsFilled()
             ? "Preencha os dados"
             : "Continuar"
