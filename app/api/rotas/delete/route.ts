@@ -1,7 +1,7 @@
 import Route from "@/models/Route"
 import connectMongoDB from "../../../../lib/database"
 
-export async function DELTE(req: Request) {
+export async function DELETE(req: Request) {
   const { searchParams } = new URL(req.url)
 
   const id = searchParams.get("id")
