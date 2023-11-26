@@ -1,13 +1,13 @@
-import mongoose, { ConnectOptions } from "mongoose"
+import mongoose from "mongoose"
 
-export const connectMongoDB = async () => {
+export default async function connect () {
   try {
-    await mongoose.connect(process.env.MONGO_URL || "", {
+    await mongoose.connect("mongodb+srv://pes:materiapes123@tickets.wldcwet.mongodb.net/", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    } as ConnectOptions);
+    } as mongoose.ConnectOptions);
     console.log("MongoDB connected");
-  } catch (err) {
-    console.log("Error connecting to MongoDB", err);
+  } catch (err:any) {
+    throw new Error(err.message);
   }
 }

@@ -6,7 +6,7 @@ import Logo from "../../components/Logo"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useApp } from "../../contexts/contextApi"
-
+import axios from "axios"
 interface FormData {
   email: string
   password: string
@@ -26,29 +26,27 @@ const Page: React.FC = () => {
   const onSubmit = async (data: FormData, e: any) => {
     e.preventDefault()
     setLoading(true)
+
+    const { email, password } = data
+
     try {
-      const res = await fetch("http://localhost:3000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
+      const res = await axios.post(
+        `http://localhost:3000/api/auth/login?email=${email}&password=${password}`,
+        { email, password },
+        { withCredentials: true }
+      )
 
-      const dataResponse = await res.json()
+      const userData = await res.data
 
-      const userData = dataResponse.data.user
       setUser(userData)
       localStorage.setItem("user", JSON.stringify(userData))
 
-      if (dataResponse.data.user.role === "admin") {
+      if (userData.role === "admin") {
         localStorage.setItem("userType", userData.role)
         router.push("/admin")
-      } else {
-        router.push("/")
-      }
+      } else router.push("/")
     } catch (err) {
-      alert("Erro ao fazer login")
+      console.log(err)
     } finally {
       setLoading(false)
     }
@@ -86,7 +84,11 @@ const Page: React.FC = () => {
           {errors.password && (
             <span className="error-message">Senha é obrigatória</span>
           )}
-          <button disabled={loading} className="login-form-button login-form-input" type="submit">
+          <button
+            disabled={loading}
+            className="login-form-button login-form-input"
+            type="submit"
+          >
             {loading ? "Carregando..." : "Entrar"}
           </button>
         </form>

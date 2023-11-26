@@ -1,20 +1,19 @@
-import { connectMongoDB } from "../../../../lib/database"
-import { User } from "../../../../models/User"
+import User from "../../../../models/User"
 import bcrypt from "bcrypt"
+import connectMongoDB from "../../../../lib/database"
 
 export async function POST(req: Request) {
   const { searchParams } = new URL(req.url)
   const email = searchParams.get("email")
   const password = searchParams.get("password")
-  
-  if (!email || !password) {
-    return new Response("Email and password are required", { status: 400 })
-  }
 
-  await connectMongoDB()
+  if (!email || !password)
+    return new Response("Email and password are required", { status: 400 })
 
   try {
-    const user = await User.findOne({ email })
+    await connectMongoDB()
+
+    const user = await User.findOne({ email }) // Operation `users.findOne()` buffering
 
     if (!user) {
       return new Response("User not found", { status: 400 })

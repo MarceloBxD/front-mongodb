@@ -1,5 +1,8 @@
 import bcrypt from "bcrypt"
-import { User } from "../../../../models/User"
+import User from "../../../../models/User"
+import connectMongoDB from "../../../../lib/database"
+
+const saltRounds = 10
 
 export async function POST(req: Request) {
   const { searchParams } = new URL(req.url)
@@ -8,18 +11,16 @@ export async function POST(req: Request) {
   const email = searchParams.get("email")
   const password = searchParams.get("password")
   const confirmPassword = searchParams.get("confirmPassword")
-  
+
   if (!name || !role || !email || !password || !confirmPassword) {
     return new Response("All fields are required", { status: 400 })
   }
-  
+  if (password !== confirmPassword) {
+    new Response("Passwords don't match", { status: 400 })
+  }
+
   try {
-
-    const saltRounds = 10
-
-    if (password !== confirmPassword) {
-      new Response("Passwords don't match", { status: 400 })
-    }
+    await connectMongoDB()
 
     let userExists = await User.findOne({ email })
 
@@ -38,7 +39,6 @@ export async function POST(req: Request) {
 
     return new Response(JSON.stringify(newUser), { status: 201 })
   } catch (err: any) {
-    console.log("Erro ao criar usuário", err)
     return new Response(err.message, { status: 400 })
   }
 }
