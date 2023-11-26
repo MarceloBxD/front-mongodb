@@ -94,12 +94,12 @@ const Planner: React.FC = () => {
           />
 
           <div className="finalizar-busca-container">
-            <Passageiros
+            {/* <Passageiros
               value={formData}
               setValue={setFormData}
               errors={errors}
               register={register}
-            />
+            /> */}
             <div className="flex flex-col-reverse">
               <Limpar limparCampos={limparCampos} />
               <button type="submit" className="botao-buscar">

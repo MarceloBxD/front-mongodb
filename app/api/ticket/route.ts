@@ -1,7 +1,7 @@
 import {Ticket} from '../../../models/Ticket';
 
 
-export const buy_ticket = async (req, res) => {
+export const buy_ticket = async (req:any, res:any) => {
       const {
     passengerName,
     passengerEmail,
@@ -37,7 +37,7 @@ export const buy_ticket = async (req, res) => {
     });
 }
 
-export const get_ticket = async (req, res) => {
+export const get_ticket = async (req:any, res:any) => {
     const { id } = req.params;
     
     try {
@@ -54,7 +54,7 @@ export const get_ticket = async (req, res) => {
     }
 }
 
-export const get_all_tickets = async (req, res) => {
+export const get_all_tickets = async (req:any, res:any) => {
     try {
         const tickets = await Ticket.find();
     

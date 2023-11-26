@@ -4,10 +4,9 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import Logo from "../../components/Logo"
 import Link from "next/link"
-import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useApp } from "../../contexts/contextApi"
-
+import axios from "axios"
 interface FormData {
   email: string
   password: string
@@ -25,20 +24,11 @@ const Page: React.FC = () => {
 
   const onSubmit = async (data: FormData, e: any) => {
     e.preventDefault()
-
     try {
-      const response = await axios.post(
-        "http://localhost:3001/auth/login",
-        {
-          email: data.email,
-          password: data.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      const res = await axios.post("/api/login", data)
+      const response = await res.data
+      
+      console.log(response.data)
 
       setUser(response.data.user)
       localStorage.setItem("user", JSON.stringify(response.data.user))
@@ -46,11 +36,13 @@ const Page: React.FC = () => {
       if (response.data.user.role === "admin") {
         localStorage.setItem("userType", response.data.user.role)
         router.push("/admin")
+      } else {
+        router.push("/")
       }
+      
     } catch (err) {
       alert("Erro ao fazer login")
     }
-    router.push("/")
   }
 
   return (

@@ -1,6 +1,8 @@
 import {User} from '../../../models/User'
 
-export async function create_user(req, res) {
+import bcrypt from 'bcrypt'
+
+export async function create_user(req:any, res:any) {
   try {
     const { name, email, password, confirmPassword, role } = req.body
     const saltRounds = 10
@@ -44,38 +46,7 @@ export async function create_user(req, res) {
   }
 }
 
-export async function login(req, res) {
-    const { email, password } = req.body;
-
-    try {
-        const user = await User.findOne({ email });
-
-        if (!user) {
-            return res.status(400).json({
-                error: "User not found",
-            });
-        }
-
-        const passwordOk = bcrypt.compareSync(password, user.password);
-
-        if (!passwordOk) {
-            return res.status(400).json({
-                message: "Wrong password",
-            });
-        }
-
-        return res.status(200).json({
-            message: "Login successful",
-            user,
-        });
-    } catch (err) {
-        return res.status(400).json({
-            message: err,
-        });
-    }
-}
-
-export async function get_user(req, res) {
+export async function get_user(req:any, res:any) {
     try {
         const user = await User.findById(req.params.id);
 

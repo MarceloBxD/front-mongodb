@@ -62,8 +62,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     
     const user = localStorage.getItem("user")
 
-    if (user) {
-      setUser(JSON.parse(user))
+    if (!!user && user !== "undefined") {
+      setUser(user.length > 0 ? JSON.parse(user) : null)
     }
     
     fetchRotas()

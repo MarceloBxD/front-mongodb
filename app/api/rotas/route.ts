@@ -1,4 +1,6 @@
-export const get_rotas = async (req, res) => {
+import { Route } from "../../../models/Route";
+
+export const get_rotas = async (req:any, res:any) => {
     const { origin, destination, departureDate } = req.body;
 
     const tickets = await Route.find({
@@ -26,7 +28,7 @@ export const get_rotas = async (req, res) => {
     });
 }
 
-export const get_rota = async (req, res) => {
+export const get_rota = async (req:any, res:any) => {
     const { id } = req.params;
 
     const ticket = await Route.findById(id);
@@ -43,7 +45,7 @@ export const get_rota = async (req, res) => {
     });
 }
 
-export const create_rota = async (req, res) => {
+export const create_rota = async (req:any, res:any) => {
     const { origem, destino, horaPartida, dataPartida, passagens } = req.body;
 
     try {
@@ -66,7 +68,7 @@ export const create_rota = async (req, res) => {
     }
 }
 
-export const update_rota = async (req, res) => {
+export const update_rota = async (req:any, res:any) => {
     const { id } = req.params;
     const { origem, destino, horaPartida, dataPartida, passagens } = req.body;
 
@@ -90,7 +92,7 @@ export const update_rota = async (req, res) => {
     }
 }
 
-export const delete_rota = async (req, res) => {
+export const delete_rota = async (req:any, res:any) => {
     const { id } = req.params;
 
     try {
