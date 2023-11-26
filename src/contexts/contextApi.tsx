@@ -6,6 +6,7 @@ import {
 } from "../utils/functions"
 import { Assento, Rota } from "../types"
 import { createContext, useContext, useState, useEffect } from "react"
+import { allRotas } from "@/utils/backend_functions/all_rotas"
 
 type User = {
   name: string
@@ -24,11 +25,7 @@ interface ContextProps {
   selectSeatModal: boolean
   setSelectSeatModal: React.Dispatch<React.SetStateAction<boolean>>
   seatsSelected: Assento[]
-  setSeatsSelected: React.Dispatch<
-    React.SetStateAction<
-      Assento[]
-    >
-  >
+  setSeatsSelected: React.Dispatch<React.SetStateAction<Assento[]>>
 }
 
 const AppContext = createContext<ContextProps>({} as ContextProps)
@@ -40,7 +37,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectSeatModal, setSelectSeatModal] = useState(false)
   const [seatsSelected, setSeatsSelected] = useState<Assento[]>([])
 
-  useEffect( () => {
+  useEffect(() => {
     const fetchRotas = async () => {
       const rotas_local = localStorage.getItem("rotas")
 
@@ -50,7 +47,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.setItem("rotas", JSON.stringify(used_routes))
 
       used_routes.sort(orderByYearThenByMonthThenByDayThenHour)
-    
+
       used_routes = used_routes.filter((rota: Rota) => {
         const now = new Date()
         const rota_ida = rota.data_ida.split("/").reverse().join("/")
@@ -60,18 +57,23 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
       setRotas(used_routes)
     }
+    fetchRotas()
+  }, [])
+  
+  useEffect(() => {
+    allRotas()
     
+  }, [])
+  
+ 
+  useEffect(() => {
     const user = localStorage.getItem("user")
 
     if (!!user && user !== "undefined") {
       setUser(user.length > 0 ? JSON.parse(user) : null)
     }
-    
-    fetchRotas()
-  }
-  , [])
-    
-    
+  }, [])
+
   const value = {
     user,
     setUser,
