@@ -26,6 +26,28 @@ interface ContextProps {
   setSelectSeatModal: React.Dispatch<React.SetStateAction<boolean>>
   seatsSelected: Assento[]
   setSeatsSelected: React.Dispatch<React.SetStateAction<Assento[]>>
+  passengersInfo: {
+    passenger: {
+      name: string
+      cpf: string
+    }
+    seat: {
+      numero: number
+    }
+  }[]
+  setPassengersInfo: React.Dispatch<
+    React.SetStateAction<
+      {
+        passenger: {
+          name: string
+          cpf: string
+        }
+        seat: {
+          numero: number
+        }
+      }[]
+    >
+  >
 }
 
 const AppContext = createContext<ContextProps>({} as ContextProps)
@@ -36,6 +58,17 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedRoute, setSelectedRoute] = useState<Rota | null>(null)
   const [selectSeatModal, setSelectSeatModal] = useState(false)
   const [seatsSelected, setSeatsSelected] = useState<Assento[]>([])
+  const [passengersInfo, setPassengersInfo] = useState<
+    {
+      passenger: {
+        name: string
+        cpf: string
+      }
+      seat: {
+        numero: number
+      }
+    }[]
+  >([])
 
   const fetchRotas = async () => {
     const rotas_local = localStorage.getItem("rotas")
@@ -88,6 +121,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setSelectSeatModal,
     seatsSelected,
     setSeatsSelected,
+    passengersInfo,
+    setPassengersInfo,
   }
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

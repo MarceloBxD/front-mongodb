@@ -2,16 +2,8 @@ import { useApp } from "@/contexts/contextApi"
 import React, { useEffect,useCallback } from "react"
 
 const PassengersInfo: React.FC = () => {
-  const { seatsSelected, setSeatsSelected } = useApp()
-  const [passengersInfo, setPassengersInfo] = React.useState<{
-      passenger: {
-        name: string
-        cpf: string
-      }
-      seat: {
-        numero: number
-      }
-  }[]>([])
+  const { seatsSelected, setSeatsSelected,setPassengersInfo,passengersInfo } = useApp()
+
     
     const handlePassengersInfo = useCallback(() => {
         const passengersInfo = seatsSelected.map((seat) => ({
