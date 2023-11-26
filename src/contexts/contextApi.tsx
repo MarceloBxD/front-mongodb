@@ -6,7 +6,7 @@ import {
 } from "../utils/functions"
 import { Assento, Rota } from "../types"
 import { createContext, useContext, useState, useEffect } from "react"
-import { allRotas } from "@/utils/backend_functions/all_rotas"
+import axios from "axios"
 
 type User = {
   name: string
@@ -37,35 +37,39 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectSeatModal, setSelectSeatModal] = useState(false)
   const [seatsSelected, setSeatsSelected] = useState<Assento[]>([])
 
+  const fetchRotas = async () => {
+    const rotas_local = localStorage.getItem("rotas")
+
+    let used_routes = JSON.parse(rotas_local || "[]")
+
+    if (!rotas_local) used_routes = await criar_rotas()
+    localStorage.setItem("rotas", JSON.stringify(used_routes))
+
+    used_routes.sort(orderByYearThenByMonthThenByDayThenHour)
+
+    used_routes = used_routes.filter((rota: Rota) => {
+      const now = new Date()
+      const rota_ida = rota.data_ida.split("/").reverse().join("/")
+      const rota_date = new Date(rota_ida)
+      return rota_date.getTime() > now.getTime()
+    })
+
+    setRotas(used_routes)
+  }
+
+  const getRotas = async () => {
+    const url = `/api/rotas/all`
+
+    const res = await axios.get(url)
+    console.log("Rotas disponiveis: " + res.data)
+    setRotas(res.data)
+  }
+
   useEffect(() => {
-    const fetchRotas = async () => {
-      const rotas_local = localStorage.getItem("rotas")
-
-      let used_routes = JSON.parse(rotas_local || "[]")
-
-      if (!rotas_local) used_routes = await criar_rotas()
-      localStorage.setItem("rotas", JSON.stringify(used_routes))
-
-      used_routes.sort(orderByYearThenByMonthThenByDayThenHour)
-
-      used_routes = used_routes.filter((rota: Rota) => {
-        const now = new Date()
-        const rota_ida = rota.data_ida.split("/").reverse().join("/")
-        const rota_date = new Date(rota_ida)
-        return rota_date.getTime() > now.getTime()
-      })
-
-      setRotas(used_routes)
-    }
+    // getRotas()
     fetchRotas()
   }, [])
-  
-  useEffect(() => {
-    allRotas()
-    
-  }, [])
-  
- 
+
   useEffect(() => {
     const user = localStorage.getItem("user")
 

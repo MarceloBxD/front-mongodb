@@ -6,7 +6,6 @@ export default async function connect () {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as mongoose.ConnectOptions);
-    console.log("MongoDB connected");
   } catch (err:any) {
     throw new Error(err.message);
   }
