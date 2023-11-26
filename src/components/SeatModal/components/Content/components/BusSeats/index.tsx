@@ -25,17 +25,14 @@ const BusSeats: React.FC = () => {
             key={seat.id}
             className={`w-full h-full rounded-full flex items-center justify-center relative hover:scale-110 transition-all  duration-200 ${
               seat.ocupado ? "cursor-not-allowed" : "cursor-pointer"
-            } flex-col
-
-`}
+            } flex-col`}
             onClick={() => {
               if (seat.ocupado) return
-              setSeatsSelected((seats) => {
-                if (seats.find((s) => s.id === seat.id)) {
-                  return seats.filter((s) => s.id !== seat.id)
-                }
-                return [...seats, seat]
-              })
+              if (seatsSelected.find((s) => s.id === seat.id)) {
+                setSeatsSelected(seatsSelected.filter((s) => s.id !== seat.id))
+              } else {
+                setSeatsSelected([...seatsSelected, seat])
+              }
             }}
           >
             <BusSeatIcon
