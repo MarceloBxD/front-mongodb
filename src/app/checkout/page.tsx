@@ -1,14 +1,20 @@
 "use client"
+import Payment from "@/components/Payment"
 import PassengersInfo from "@/components/SeatModal/components/Content/components/PassengersInfo"
 import Summary from "@/components/Summary"
 import { useApp } from "@/contexts/contextApi"
 import { useRouter } from "next/navigation"
-import React from "react"
+import React,{useEffect} from "react"
 
 const Page: React.FC = () => {
-  const { seatsSelected } = useApp()
+  const { seatsSelected, checkoutStep,setCheckoutStep } = useApp()
 
   const router = useRouter()
+  
+  useEffect(() => {
+  setCheckoutStep(0)
+  
+  }, [])
 
   if (!seatsSelected)
     return (
@@ -27,7 +33,7 @@ const Page: React.FC = () => {
 
   return (
     <div className="grid grid-cols-2 w-full bg-white rounded-xl p-5 gap-5 shadow-md">
-      <PassengersInfo />
+      {checkoutStep === 0 ? <PassengersInfo /> : <Payment />}
       <Summary />
     </div>
   )
