@@ -12,6 +12,7 @@ type User = {
   email: string
   password: string
   confirmPassword: string
+  role: string
 }
 
 interface ContextProps {

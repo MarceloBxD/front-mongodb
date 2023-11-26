@@ -8,6 +8,7 @@ import { useApp } from "@/contexts/contextApi";
 export default function Admin () {
   const [selectedButton, setSelectedButton] = useState<string>("");
   const [routeId, setRouteId] = useState<string>("");
+  const {user}=useApp()
   
   const router = useRouter()
 
@@ -40,13 +41,13 @@ export default function Admin () {
 
   useEffect(() => {
     const verifyUserType = async () => {
-      const userType = localStorage.getItem("userType");
-      if (userType !== "admin") {
+      if(!user) return
+      if (user.role !== "admin") {
         router.push("/");
       }
     };
     verifyUserType();
-  }, []);
+  }, [user]);
 
   return (
     <div className="w-screen flex gap-4 flex-col items-center  p-5 justify-center ">

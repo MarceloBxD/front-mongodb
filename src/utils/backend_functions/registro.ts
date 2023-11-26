@@ -1,11 +1,9 @@
 import axios from "axios"
-import { createParamsInUrl } from "../functions"
+import { useRouter } from "next/navigation"
+import { useApp } from "@/contexts/contextApi"
 
 export const registro = async (data: any) => {
   const { name, email, password, confirmPassword } = data
-
-  //   const params = createParamsInUrl({ email, password, confirmPassword })
-
   const url = `/api/auth/create_user`
 
   try {
@@ -20,8 +18,6 @@ export const registro = async (data: any) => {
       },
       { withCredentials: true }
     )
-    console.log(res)
-
     const user = await res.data
 
     if (!user) return null

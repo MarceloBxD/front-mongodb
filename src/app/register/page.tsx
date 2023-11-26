@@ -1,40 +1,53 @@
-"use client";
+"use client"
 
-import React from "react";
-import { useForm } from "react-hook-form";
-import Logo from "@/components/Logo";
-import Link from "next/link";
-import axios from "axios";
-import { registro } from "@/utils/backend_functions/registro";
+import React from "react"
+import { useForm } from "react-hook-form"
+import Logo from "@/components/Logo"
+import Link from "next/link"
+import { registro } from "@/utils/backend_functions/registro"
+import { useApp } from "@/contexts/contextApi"
+import { useRouter } from "next/navigation"
 
 interface FormData {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
 }
 
 const Register: React.FC = () => {
+  const { setUser } = useApp()
+  const [loading, setLoading] = React.useState(false)
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>()
+  const router = useRouter()
 
   const onSubmit = async (data: FormData) => {
-    // Lógica de envio aqui
-    const registered = await registro(data);
-    console.log(registered)
-  };
+    setLoading(true)
+    try {
+      const user = await registro(data)
+      if (user) {
+        setUser(user)
+        router.push("/")
+      } else throw new Error("Erro ao cadastrar usuário")
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   // Regex para verificar se a senha contém pelo menos um número e um caractere especial
-  const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])/;
+  const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])/
 
   // Função para validar se as senhas coincidem
   const validatePassword = (value: string) => {
-    return value === watch("password") || "As senhas não coincidem";
-  };
+    return value === watch("password") || "As senhas não coincidem"
+  }
 
   return (
     <div className="register-page-wrapper">
@@ -46,6 +59,7 @@ const Register: React.FC = () => {
             placeholder="Nome completo"
             className="register-form-input"
             type="text"
+            disabled={loading}
             {...register("name", {
               required: "Nome completo é obrigatório",
             })}
@@ -58,6 +72,7 @@ const Register: React.FC = () => {
             placeholder="Email"
             className="register-form-input"
             type="email"
+            disabled={loading}
             {...register("email", {
               required: "Email é obrigatório",
               pattern: { value: /^\S+@\S+\.\S+$/, message: "Email inválido" },
@@ -71,6 +86,7 @@ const Register: React.FC = () => {
             placeholder="Senha"
             className="register-form-input"
             type="password"
+            disabled={loading}
             {...register("password", {
               required: "Senha é obrigatória",
               minLength: {
@@ -92,6 +108,7 @@ const Register: React.FC = () => {
             placeholder="Confirmar senha"
             className="register-form-input"
             type="password"
+            disabled={loading}
             {...register("confirmPassword", {
               required: "Confirmação de senha é obrigatória",
               validate: validatePassword,
@@ -106,7 +123,8 @@ const Register: React.FC = () => {
           <input
             className="register-form-button register-form-input"
             type="submit"
-            value="Cadastrar"
+            disabled={loading}
+            value={loading ? "Carregando..." : "Cadastrar"}
           />
         </form>
         <span>
@@ -114,7 +132,7 @@ const Register: React.FC = () => {
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

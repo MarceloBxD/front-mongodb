@@ -6,7 +6,7 @@ export const login = async (data: any) => {
 
   const params = createParamsInUrl({ email, password })
 
-  const url = `/api/auth/login?${params}`
+  const url = `/api/auth/login${params}`
 
   try {
     const res = await axios.post(url, null, { withCredentials: true })
