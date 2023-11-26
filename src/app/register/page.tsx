@@ -32,7 +32,12 @@ const Register: React.FC = () => {
       const user = await registro(data)
       if (user) {
         setUser(user)
-        router.push("/")
+        localStorage.setItem("user", JSON.stringify(user))
+
+        if (user.role === "admin") {
+          localStorage.setItem("userType", user.role)
+          router.push("/admin")
+        } else router.push("/")
       } else throw new Error("Erro ao cadastrar usuário")
     } catch (err) {
       console.log(err)

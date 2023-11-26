@@ -60,8 +60,18 @@ const Header: React.FC = () => {
         ) : (
           <div className="w-full flex items-center justify-end gap-5 p-4">
             <div className="color-black hidden md:flex">
-              Bem-vindo, <b>{user.name.split(' ')[0]}!</b>
+                Bem-vindo,{' '}<b>{user.name.split(" ")[0]}!</b>
             </div>
+            {user.role === "admin" && (
+              <button
+                className="w-fit bg-[#213a5c] hover:bg-[#213a5c]/90 rounded-md text-white font-bold py-2 px-4"
+                onClick={() => {
+                  router.push("/admin")
+                }}
+              >
+                Painel de Admin
+              </button>
+            )}
             <button
               className="header-button-login"
               onClick={() => {
@@ -72,16 +82,6 @@ const Header: React.FC = () => {
             >
               Sair
             </button>
-            {user.role === "admin" && (
-              <button
-                className="w-full bg-[#213a5c] hover:bg-[#213a5c]/90 rounded-md text-white font-bold py-2 px-4"
-                onClick={() => {
-                  router.push("/admin")
-                }}
-              >
-                Painel de Admin
-              </button>
-            )}
           </div>
         )}
       </div>
