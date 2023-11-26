@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, models, model } from "mongoose"
 
 const seatSchema = new Schema({
   numeroAssento: {
@@ -14,6 +14,6 @@ const seatSchema = new Schema({
     ref: "Passenger",
     required: true,
   },
-});
+})
 
-export const Seat = mongoose.model("Seat", seatSchema);
+export const Seat = models.Seat || model("Seat", seatSchema)

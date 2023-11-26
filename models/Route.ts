@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, models, model } from "mongoose"
 
 const routeSchema = new Schema({
   origin: {
@@ -24,6 +24,6 @@ const routeSchema = new Schema({
       ref: "Ticket",
     },
   ],
-});
+})
 
-export const Route = mongoose.model("Route", routeSchema);
+export const Route = models.Route || model("Route", routeSchema)

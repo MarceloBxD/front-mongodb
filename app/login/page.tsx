@@ -6,7 +6,7 @@ import Logo from "../../components/Logo"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useApp } from "../../contexts/contextApi"
-import axios from "axios"
+
 interface FormData {
   email: string
   password: string
@@ -19,29 +19,38 @@ const Page: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>()
   const { setUser } = useApp()
+  const [loading, setLoading] = React.useState(false)
 
   const router = useRouter()
 
   const onSubmit = async (data: FormData, e: any) => {
     e.preventDefault()
+    setLoading(true)
     try {
-      const res = await axios.post("/api/login", data)
-      const response = await res.data
-      
-      console.log(response.data)
+      const res = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
 
-      setUser(response.data.user)
-      localStorage.setItem("user", JSON.stringify(response.data.user))
+      const dataResponse = await res.json()
 
-      if (response.data.user.role === "admin") {
-        localStorage.setItem("userType", response.data.user.role)
+      const userData = dataResponse.data.user
+      setUser(userData)
+      localStorage.setItem("user", JSON.stringify(userData))
+
+      if (dataResponse.data.user.role === "admin") {
+        localStorage.setItem("userType", userData.role)
         router.push("/admin")
       } else {
         router.push("/")
       }
-      
     } catch (err) {
       alert("Erro ao fazer login")
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -55,6 +64,7 @@ const Page: React.FC = () => {
             placeholder="Email"
             className="login-form-input"
             type="email"
+            disabled={loading}
             {...register("email", {
               required: true,
               pattern: /^\S+@\S+\.\S+$/,
@@ -70,18 +80,17 @@ const Page: React.FC = () => {
             placeholder="Senha"
             className="login-form-input"
             type="password"
+            disabled={loading}
             {...register("password", { required: true })}
           />
           {errors.password && (
             <span className="error-message">Senha é obrigatória</span>
           )}
-
-          <input
-            className="login-form-button login-form-input"
-            type="submit"
-            value="Entrar"
-          />
+          <button disabled={loading} className="login-form-button login-form-input" type="submit">
+            {loading ? "Carregando..." : "Entrar"}
+          </button>
         </form>
+
         <span>
           Não tem cadastro? <Link href="/register">Cadastre-se</Link>
         </span>

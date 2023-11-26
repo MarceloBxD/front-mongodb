@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import { Schema } from "mongoose";
+import { Schema, models, model } from "mongoose"
 
 const ticketSchema = new Schema({
   usuario: {
@@ -26,6 +25,6 @@ const ticketSchema = new Schema({
       ref: "Passenger",
     },
   ],
-});
+})
 
-export const Ticket = mongoose.model("Ticket", ticketSchema);
+export const Ticket = models.Ticket || model("Ticket", ticketSchema)

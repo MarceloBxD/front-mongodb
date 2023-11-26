@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import { Schema, models, model } from "mongoose"
 
 const passengerSchema = new Schema({
   seats: {
@@ -13,6 +13,6 @@ const passengerSchema = new Schema({
     type: String,
     required: [true, "CPF is required"],
   },
-});
+})
 
-export const Passenger = mongoose.model("Passenger", passengerSchema);
+export const Passenger = models.Passenger || model("Passenger", passengerSchema)
