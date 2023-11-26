@@ -1,7 +1,5 @@
-import Image from "next/image"
 import React from "react"
 import { useApp } from "@/contexts/contextApi"
-import busSchema from "@/assets/bus-schema.png"
 import BusSeatIcon from "@/assets/icons/BusSeatIcon"
 
 const BusSeats: React.FC = () => {
@@ -12,8 +10,7 @@ const BusSeats: React.FC = () => {
   const { assentos } = selectedRoute
 
   return (
-    <div className="w-full h-[300px] flex flex-col justify-center items-center rounded-xl relative">
-      <Image src={busSchema} alt="Bus" layout="fill" objectFit="contain" />
+    <div className="w-full h-[300px] flex flex-col justify-center items-center rounded-xl relative bg-gray-100 shadow-md overflow-hidden">
       <div
         className="absolute grid
                 grid-flow-col
