@@ -48,6 +48,8 @@ interface ContextProps {
       }[]
     >
   >
+  checkoutStep: number
+  setCheckoutStep: React.Dispatch<React.SetStateAction<number>>
 }
 
 const AppContext = createContext<ContextProps>({} as ContextProps)
@@ -58,6 +60,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedRoute, setSelectedRoute] = useState<Rota | null>(null)
   const [selectSeatModal, setSelectSeatModal] = useState(false)
   const [seatsSelected, setSeatsSelected] = useState<Assento[]>([])
+  const[checkoutStep, setCheckoutStep] = useState(0)
   const [passengersInfo, setPassengersInfo] = useState<
     {
       passenger: {
@@ -123,6 +126,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setSeatsSelected,
     passengersInfo,
     setPassengersInfo,
+    checkoutStep,setCheckoutStep
   }
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

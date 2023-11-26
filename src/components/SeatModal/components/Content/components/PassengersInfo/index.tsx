@@ -26,17 +26,7 @@ const PassengersInfo: React.FC = () => {
   }, [handlePassengersInfo])
 
   return (
-    <div className="flex flex-col
-    gap-4
-    w-full
-    overflow-y-auto
-    h-[600px]
-    bg-gray-100
-    rounded-xl
-    p-5
-    shadow-md
-
-">
+    <div className="flex flex-col gap-4 w-full overflow-y-auto h-[600px] bg-gray-100 rounded-xl p-5 shadow-md">
       {passengersInfo.map((passengerInfo, index) => (
         <div
           className="flex flex-col gap-2 w-full bg-white p-4 rounded-md shadow-md"
