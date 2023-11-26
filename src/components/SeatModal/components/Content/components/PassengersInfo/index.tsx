@@ -36,6 +36,7 @@ const PassengersInfo: React.FC = () => {
             <span>
               Passageiro {index + 1} - Assento {passengerInfo.seat.numero}
             </span>
+            {passengersInfo.length === 1 || (
             <CloseIcon
               style={{
                 width: "25px",
@@ -46,7 +47,9 @@ const PassengersInfo: React.FC = () => {
                 newSeatsSelected.splice(index, 1)
                 setSeatsSelected(newSeatsSelected)
               }}
-            />
+              />
+)}
+              
           </div>
 
           <div className="flex flex-col gap-2">

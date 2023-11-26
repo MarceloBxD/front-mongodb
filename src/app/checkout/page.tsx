@@ -10,7 +10,7 @@ const Page: React.FC = () => {
 
   const router = useRouter()
 
-  if (!seatsSelected || passengersInfo.length === 0)
+  if (!seatsSelected)
     return (
       <div className="w-full h-[400px] flex flex-col items-center justify-center gap-4">
         <span className="text-2xl font-bold">

@@ -61,8 +61,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectSeatModal, setSelectSeatModal] = useState(false)
   const [seatsSelected, setSeatsSelected] = useState<Assento[]>([])
   const[checkoutStep, setCheckoutStep] = useState(0)
-  const [passengersInfo, setPassengersInfo] = useState<
-    {
+  const [passengersInfo, setPassengersInfo] = useState<{
       passenger: {
         name: string
         cpf: string
