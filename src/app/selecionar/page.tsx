@@ -24,7 +24,7 @@ const Page: React.FC = () => {
     } else {
       setSelectedRoute(route)
     }
-  }, [rotas, id])
+  }, [rotas, id,setSelectedRoute,router])
 
   return <Selected />
 }

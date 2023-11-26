@@ -47,7 +47,7 @@ const Map: React.FC<MapProps> = ({ origin, destination }) => {
       })
     }
     initMap()
-  }, [origin, destination, mapRef.current])
+  }, [origin, destination])
 
   return <div ref={mapRef} style={{ height: "100%", width: "100%" }} />
 }

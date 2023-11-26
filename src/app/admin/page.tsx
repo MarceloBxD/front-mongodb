@@ -47,7 +47,7 @@ export default function Admin () {
       }
     };
     verifyUserType();
-  }, [user]);
+  }, [user,router]);
 
   return (
     <div className="w-screen flex gap-4 flex-col items-center  p-5 justify-center ">
