@@ -26,4 +26,4 @@ const routeSchema = new Schema({
   ],
 })
 
-export const Route = models.Route || model("Route", routeSchema)
+export default models.Route || model("Route", routeSchema)

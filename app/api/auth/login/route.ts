@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   try {
     await connectMongoDB()
 
-    const user = await User.findOne({ email }) // Operation `users.findOne()` buffering
+    const user = await User.findOne({ email })
 
     if (!user) {
       return new Response("User not found", { status: 400 })
