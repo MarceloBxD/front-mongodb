@@ -11,12 +11,7 @@ const BusSeats: React.FC = () => {
 
   return (
     <div className="w-full h-[300px] flex flex-col justify-center items-center rounded-xl relative bg-gray-100 shadow-md overflow-hidden">
-      <div
-        className="absolute grid
-                grid-flow-col
-                grid-rows-4
-                gap-2 w-[80%] h-[75%]"
-      >
+      <div className="absolute grid grid-flow-col grid-rows-4 gap-2 w-[80%] h-[75%]">
         {assentos.map((seat) => (
           <div
             key={seat.id}
