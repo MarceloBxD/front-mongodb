@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 import React from "react"
 
 const Page: React.FC = () => {
-  const { seatsSelected, passengersInfo } = useApp()
+  const { seatsSelected } = useApp()
 
   const router = useRouter()
 

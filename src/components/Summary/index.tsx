@@ -6,7 +6,19 @@ import { format_hour } from "@/utils/functions"
 import React from "react"
 
 const Summary: React.FC = () => {
-  const { passengersInfo, selectedRoute } = useApp()
+  const { passengersInfo, selectedRoute, checkoutStep, setCheckoutStep } =
+    useApp()
+
+  const checkIfPassengersInfoIsFilled = () => {
+    const isFilled = passengersInfo.every((passengerInfo) => {
+      return (
+        passengerInfo.passenger.name !== "" &&
+        passengerInfo.passenger.cpf !== ""
+      )
+    })
+
+    return isFilled
+  }
 
   if (!selectedRoute) return null
 
@@ -72,8 +84,22 @@ const Summary: React.FC = () => {
           </span>
         </div>
       </div>
-      <button className="bg-blue-500 text-white rounded-xl p-2 shadow-md">
-        Finalizar compra
+      <button
+        className={`${
+          !checkIfPassengersInfoIsFilled()
+            ? "opacity-50 cursor-not-allowed"
+            : "bg-blue-500 hover:bg-blue-600 text-white"
+        } rounded-xl p-2 shadow-md`}
+        disabled={!checkIfPassengersInfoIsFilled()}
+        onClick={() => {
+          setCheckoutStep(checkoutStep + 1)
+        }}
+      >
+        {checkoutStep === 0
+          ? !checkIfPassengersInfoIsFilled()
+            ? "Preencha os dados"
+            : "Continuar"
+          : "Finalizar compra"}
       </button>
     </div>
   )
