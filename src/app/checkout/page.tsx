@@ -4,16 +4,7 @@ import React from "react"
 
 const Page: React.FC = () => {
   return (
-    <div className="
-     grid
-      grid-cols-2
-      w-full
-      bg-white rounded-xl
-      p-5
-      gap-5
-      shadow-md
-
-">
+    <div className="grid grid-cols-2 w-full bg-white rounded-xl p-5 gap-5 shadow-md">
       <PassengersInfo />
       <Summary />
     </div>
