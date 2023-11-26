@@ -1,16 +1,22 @@
-export const delete_rota = async (req:any, res:any) => {
-    const { id } = req.params;
+import Route from "@/models/Route"
+import connectMongoDB from "../../../../lib/database"
+
+export async function DELTE(req: Request) {
+  const { searchParams } = new URL(req.url)
+
+  const id = searchParams.get("id")
 
     try {
-        const route = await Route.findByIdAndDelete(id);
+    await connectMongoDB()
+      
+    const route = await Route.findByIdAndDelete(id)
 
-        res.status(200).json({
-            message: "Rota deletada com sucesso",
-            route,
-        });
-    } catch (err) {
-        res.status(400).json({
-            error: err,
-        });
+    if (!route) {
+      return new Response("Rota não encontrada", { status: 400 })
     }
+
+    return new Response(JSON.stringify(route), { status: 200 })
+  } catch (err: any) {
+    return new Response(err.message, { status: 500 })
+  }
 }

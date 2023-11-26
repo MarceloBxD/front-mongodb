@@ -1,4 +1,5 @@
 import Route from "../../../../models/Route"
+import connectMongoDB from "../../../../lib/database"
 
 export async function POST(req: any, res: any) {
   const { searchParams } = new URL(req.url)
@@ -9,6 +10,8 @@ export async function POST(req: any, res: any) {
   if (!id) return new Response("id is required", { status: 400 })
 
   try {
+    await connectMongoDB()
+    
     const route = await Route.create({
       origem,
       destino,
