@@ -10,13 +10,6 @@ export type Assento = {
     ocupado: boolean,
 }
 
-export type Motorista = {
-    id: string | number,
-    nome: string,
-    telefone: string,
-    email: string,
-}
-
 export type Rota = {
     id: number,
     origem: string,
@@ -35,5 +28,4 @@ export type Rota = {
     hora_chegada: string,
     assentos: Assento[],
     valor: number,
-    motorista: Motorista,
 }

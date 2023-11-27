@@ -140,8 +140,6 @@ export const criar_rotas = async () => {
   let rotas: Rota[] = []
 
   for (let i = 0; i < 4; i++) {
-    const randomUser = generate_user()
-
     let origem = cidades[Math.floor(Math.random() * cidades.length)]
     let destino = cidades.filter((cidade) => cidade !== origem)[
       Math.floor(Math.random() * cidades.length)
@@ -150,15 +148,11 @@ export const criar_rotas = async () => {
     let origem_coords = await getCoordsInGoogleMaps(origem)
     do {
       origem = cidades[Math.floor(Math.random() * cidades.length)]
-      destino = cidades.filter((cidade) => cidade !== origem)[
-        Math.floor(Math.random() * cidades.length)
-      ]
       origem_coords = await getCoordsInGoogleMaps(origem)
     } while (!origem_coords)
     
     let destino_coords = await getCoordsInGoogleMaps(destino)
     do {
-      origem = cidades[Math.floor(Math.random() * cidades.length)]
       destino = cidades.filter((cidade) => cidade !== origem)[
         Math.floor(Math.random() * cidades.length)
       ]
@@ -189,12 +183,6 @@ export const criar_rotas = async () => {
       )}`,
       assentos: gerarAssentos(),
       valor: gerarValor(),
-      motorista: {
-        email: randomUser.email,
-        nome: randomUser.nome,
-        telefone: randomUser.telefone,
-        id: randomUser.id,
-      },
     }
     rotas.push(rota)
   }

@@ -17,7 +17,7 @@ export default function Admin () {
 
     try {
       await axios
-        .delete(`http://localhost:3001/routes/delete-route/${routeId}`)
+        .delete(`/api/rotas/delete?id=${routeId}`)
         .then(() => {
           alert("Rota deletada com sucesso");
           router.push("/admin")
