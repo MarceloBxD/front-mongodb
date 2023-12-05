@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import React from "react"
 
 const Page: React.FC = () => {
-  const { rotas, setSelectedRoute } = useApp()
+  const { rotas, setSelectedRoute,setPassengersInfo,setSeatsSelected } = useApp()
 
   const searchParams = useSearchParams()
   const id = searchParams.get("id")
@@ -23,8 +23,10 @@ const Page: React.FC = () => {
       return
     } else {
       setSelectedRoute(route)
+      setPassengersInfo([])
+      setSeatsSelected([])
     }
-  }, [rotas, id])
+  }, [rotas, id, setSelectedRoute, router])
 
   return <Selected />
 }

@@ -1,8 +1,7 @@
-import Image from "next/image"
 import React from "react"
 import { useApp } from "@/contexts/contextApi"
-import busSchema from "@/assets/bus-schema.png"
 import BusSeatIcon from "@/assets/icons/BusSeatIcon"
+import '../../../../../../styles/busSeat.css'
 
 const BusSeats: React.FC = () => {
   const { selectedRoute, setSeatsSelected, seatsSelected } = useApp()
@@ -12,14 +11,8 @@ const BusSeats: React.FC = () => {
   const { assentos } = selectedRoute
 
   return (
-    <div className="w-full h-[300px] flex flex-col justify-center items-center rounded-xl relative">
-      <Image src={busSchema} alt="Bus" layout="fill" objectFit="contain" />
-      <div
-        className="absolute grid
-                grid-flow-col
-                grid-rows-4
-                gap-2 w-[80%] h-[75%]"
-      >
+    <div className="w-full h-[300px] flex flex-col justify-center items-center rounded-xl relative bg-gray-100 shadow-md overflow-hidden">
+      <div className="absolute grid grid-flow-col grid-rows-4 gap-2 w-[80%] h-[75%] bus-seats-icons">
         {assentos.map((seat) => (
           <div
             key={seat.id}

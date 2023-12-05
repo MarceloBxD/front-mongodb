@@ -1,37 +1,43 @@
-import React from "react";
-
-// TELA DE CHECKOUT
-
-const DiscountContainer: React.FC = () => {
-  return (
-    <div className="flex flex-col shadow-md m-3 shadow-slate-300 p-3">
-      <div className="flex flex-col gap-2">
-        <h1 className="font-bold text-xl">Você possui cupom de desconto?</h1>
-        <p>
-          Digite o código ou selecione o cupom disponível para resgatá-lo nessa
-          compra.
-        </p>
-      </div>
-      <div className="mt-3">
-        <input
-          type="text"
-          className="px-3 py-1 rounded-lg border border-gray-300"
-          placeholder="Digite o CUPOM"
-        />
-        <button className="px-3 text-white py-1 rounded-full border bg-slate-800 -ml-24 font-bold border-gray-300">
-          Aplicar
-        </button>
-      </div>
-    </div>
-  );
-};
+"use client"
+import Payment from "@/components/Payment"
+import PassengersInfo from "@/components/SeatModal/components/Content/components/PassengersInfo"
+import Summary from "@/components/Summary"
+import { useApp } from "@/contexts/contextApi"
+import { useRouter } from "next/navigation"
+import React,{useEffect} from "react"
+import '../../styles/checkout.css'
 
 const Page: React.FC = () => {
-  return (
-    <div className="container mx-auto">
-      <DiscountContainer />
-    </div>
-  );
-};
+  const { seatsSelected, checkoutStep,setCheckoutStep } = useApp()
 
-export default Page;
+  const router = useRouter()
+  
+  useEffect(() => {
+  setCheckoutStep(0)
+  
+  }, [])
+
+  if (!seatsSelected || seatsSelected.length === 0)
+    return (
+      <div className="w-full h-[400px] flex flex-col items-center justify-center gap-4">
+        <span className="text-2xl font-bold">
+          Opa! Não temos dados para mostrar aqui.
+        </span>
+        <button
+          className="bg-blue-500 text-white rounded-md p-2"
+          onClick={() => router.push("/")}
+        >
+          Voltar para o início
+        </button>
+      </div>
+    )
+
+  return (
+    <div className="grid grid-cols-2 w-full bg-white rounded-xl p-5 gap-5 shadow-md checkout-wrapper">
+      {checkoutStep === 0 ? <PassengersInfo /> : <Payment />}
+      <Summary />
+    </div>
+  )
+}
+
+export default Page

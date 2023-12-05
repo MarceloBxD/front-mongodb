@@ -48,6 +48,8 @@ interface ContextProps {
       }[]
     >
   >
+  checkoutStep: number
+  setCheckoutStep: React.Dispatch<React.SetStateAction<number>>
 }
 
 const AppContext = createContext<ContextProps>({} as ContextProps)
@@ -58,8 +60,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedRoute, setSelectedRoute] = useState<Rota | null>(null)
   const [selectSeatModal, setSelectSeatModal] = useState(false)
   const [seatsSelected, setSeatsSelected] = useState<Assento[]>([])
-  const [passengersInfo, setPassengersInfo] = useState<
-    {
+  const[checkoutStep, setCheckoutStep] = useState(0)
+  const [passengersInfo, setPassengersInfo] = useState<{
       passenger: {
         name: string
         cpf: string
@@ -80,12 +82,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     used_routes.sort(orderByYearThenByMonthThenByDayThenHour)
 
-    used_routes = used_routes.filter((rota: Rota) => {
-      const now = new Date()
-      const rota_ida = rota.data_ida.split("/").reverse().join("/")
-      const rota_date = new Date(rota_ida)
-      return rota_date.getTime() > now.getTime()
-    })
+    // used_routes = used_routes.filter((rota: Rota) => {
+    //   const now = new Date()
+    //   const rota_ida = rota.data_ida.split("/").reverse().join("/")
+    //   const rota_date = new Date(rota_ida)
+    //   return rota_date.getTime() > now.getTime()
+    // })
 
     setRotas(used_routes)
   }
@@ -123,6 +125,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setSeatsSelected,
     passengersInfo,
     setPassengersInfo,
+    checkoutStep,setCheckoutStep
   }
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>

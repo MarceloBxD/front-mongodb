@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { usePathname,useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useApp } from "@/contexts/contextApi";
 
 export default function Admin () {
@@ -17,7 +17,7 @@ export default function Admin () {
 
     try {
       await axios
-        .delete(`http://localhost:3001/routes/delete-route/${routeId}`)
+        .delete(`/api/rotas/delete?id=${routeId}`)
         .then(() => {
           alert("Rota deletada com sucesso");
           router.push("/admin")
@@ -47,7 +47,7 @@ export default function Admin () {
       }
     };
     verifyUserType();
-  }, [user]);
+  }, [user,router]);
 
   return (
     <div className="w-screen flex gap-4 flex-col items-center  p-5 justify-center ">

@@ -1,6 +1,12 @@
 import React from 'react';
 
-const CloseIcon: React.FC = (props) => {
+type Props = {
+  style?: React.CSSProperties;
+  className?: string;
+  onClick?: React.MouseEventHandler<SVGSVGElement>;
+};
+
+const CloseIcon: React.FC<Props> = (props:any) => {
   return  <svg
       viewBox="0 0 1024 1024"
       fill="currentColor"
