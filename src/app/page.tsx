@@ -1,6 +1,7 @@
-import Banner from "../components/Banner"
-import Planner from "../components/Planner"
-import TripList from "../components/TripList"
+import { ToastContainer } from "react-toastify";
+import Banner from "../components/Banner";
+import Planner from "../components/Planner";
+import TripList from "../components/TripList";
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
       <Banner />
       <Planner />
       <TripList />
+      <ToastContainer closeOnClick pauseOnHover position="top-left" />
     </div>
-  )
+  );
 }
